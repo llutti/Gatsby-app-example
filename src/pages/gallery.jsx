@@ -3,16 +3,19 @@ import Layout from '../components/Layout';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import SEO from '../components/seo';
+import fotosJson from '../images/fotos.json';
 
 const Gallery = () =>
 {
   const { gallery } = useStaticQuery(graphql`
       query {
-        gallery: allFile(filter: {absolutePath: {regex: "/images/"}, ext: {eq: ".jpg"}}) {
+        gallery: allFile(filter: {absolutePath: {regex: "/images/"}, ext: {eq: ".jpg"}}, sort: {fields: name}) {
           nodes {
             id
+            name
             childImageSharp {
               fluid(maxHeight: 500, maxWidth: 500) {
+                originalName
                 ...GatsbyImageSharpFluid_tracedSVG
               }
             }
@@ -37,7 +40,10 @@ const Gallery = () =>
           {gallery.nodes.map(
             image => (
               <div key={`dv${image.id}`} className="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <Img key='image.id' fluid={image.childImageSharp.fluid} alt='Gallery' />
+                <Img fluid={image.childImageSharp.fluid} alt='Gallery' />
+                <span>{image.name}</span>
+                <br />
+                <span>{fotosJson.fotos.find(f => f.name === image.name)?.description ?? ''}</span>
               </div>
             )
           )}
