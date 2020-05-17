@@ -1,11 +1,21 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Gatsby-App Example`,
+    description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores, nostrum.`,
+    author: `@llutti`,
+    copyright: `© Copyright - All Rights Reserved`,
+    socialMedia: {
+      github: 'https://github.com/llutti',
+      codepen: 'https://github.com/llutti',
+      facebook: 'https://github.com/llutti',
+    },
+    siteUrl: `http://www.example.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
